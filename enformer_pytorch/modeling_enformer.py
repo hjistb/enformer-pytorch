@@ -282,7 +282,7 @@ class Enformer(PreTrainedModel):
         self.stem = nn.Sequential(
             nn.Conv1d(4, half_dim, 15, padding = 7),
             Residual(ConvBlock(half_dim)),
-            AttentionPool(half_dim, pool_size = 2)
+            AttentionPool(half_dim, pool_size = config.pool_size)
         )
 
         # create conv tower
@@ -295,7 +295,7 @@ class Enformer(PreTrainedModel):
             conv_layers.append(nn.Sequential(
                 ConvBlock(dim_in, dim_out, kernel_size = 5),
                 Residual(ConvBlock(dim_out, dim_out, 1)),
-                AttentionPool(dim_out, pool_size = 2)
+                AttentionPool(dim_out, pool_size = config.pool_size)
             ))
 
         self.conv_tower = nn.Sequential(*conv_layers)

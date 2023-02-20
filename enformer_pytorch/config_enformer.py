@@ -18,6 +18,7 @@ class EnformerConfig(PretrainedConfig):
         use_convnext = False,
         num_downsamples = 7,    # genetic sequence is downsampled 2 ** 7 == 128x in default Enformer - can be changed for higher resolution
         dim_divisible_by = 128,
+        pool_size = 2, # size for attention pooling
         **kwargs,
     ):
         self.dim = dim
@@ -32,5 +33,6 @@ class EnformerConfig(PretrainedConfig):
         self.use_checkpointing = use_checkpointing
         self.num_downsamples = num_downsamples
         self.dim_divisible_by = dim_divisible_by
+        self.pool_size = pool_size
         
         super().__init__(**kwargs)
