@@ -171,12 +171,7 @@ import torch
 from enformer_pytorch import Enformer
 from enformer_pytorch.finetune import HeadAdapterWrapper
 
-enformer = Enformer.from_hparams(
-    dim = 1536,
-    depth = 1,
-    heads = 8,
-    target_length = 200,
-)
+enformer = Enformer.from_pretrained('EleutherAI/enformer-official-rough')
 
 model = HeadAdapterWrapper(
     enformer = enformer,
@@ -198,12 +193,7 @@ import torch
 from enformer_pytorch import Enformer
 from enformer_pytorch.finetune import ContextAdapterWrapper
 
-enformer = Enformer.from_hparams(
-    dim = 1536,
-    depth = 1,
-    heads = 8,
-    target_length = 200,
-)
+enformer = Enformer.from_pretrained('EleutherAI/enformer-official-rough')
     
 model = ContextAdapterWrapper(
     enformer = enformer,
@@ -231,12 +221,7 @@ import torch
 from enformer_pytorch import Enformer
 from enformer_pytorch.finetune import ContextAttentionAdapterWrapper
 
-enformer = Enformer.from_hparams(
-    dim = 1536,
-    depth = 1,
-    heads = 8,
-    target_length = 200,
-)
+enformer = Enformer.from_pretrained('EleutherAI/enformer-official-rough')
     
 model = ContextAttentionAdapterWrapper(
     enformer = enformer,
@@ -264,7 +249,7 @@ loss.backward()
 
 ## Data
 
-You can use the `GenomicIntervalDataset` to easily fetch sequences of any length from a `.bed` file, with greater context length dynamically computed if specified
+You can use the `GenomicIntervalDataset` to easily fetch sequences of any length from a <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">`.bed`</a> file, with greater context length dynamically computed if specified
 
 ```python
 import torch
